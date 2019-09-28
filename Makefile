@@ -7,7 +7,7 @@ FLAG	= -Wall -Wextra -Werror
 
 OGL 	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
-LIB 	= fractol.h
+LIB 	= wolf3d.h
 
 MYLIB	= libft_printf/libftprintf.a
 
@@ -33,7 +33,7 @@ all: mkdir $(NAME)
 mkdir:
 	@mkdir -p $(OBJ_DIR)
 
-$(NAME): $(OBJF) mylib
+$(NAME): $(OBJF) $(LIBF) mylib
 	@$(GCC) $(OGL) $(FLAG) $(OBJF) $(MYLIB) -o  $(NAME) 
 	@echo "\033[32mWolf3D Builded\033[39m"
 

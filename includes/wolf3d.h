@@ -58,10 +58,13 @@ typedef struct s_wolf3d
 }               t_wolf3d;
 
 //additional.c
-int		ft_checkfile(char *file);
-int		ft_count_length(char *str);
-int		ft_count_height(char *file);
-void	ft_free(char **map);
+int		    ft_checkfile(char *file);
+int	    	ft_count_length(char *str);
+int	    	ft_count_height(char *file);
+void    	ft_free(char **map);
+
+//read.c
+void		ft_read(char *file, t_wolf3d *wolf3d);
 
 
 

@@ -22,6 +22,12 @@ static void	ft_mlx_init(t_wolf3d *wolf3d)
 	wolf3d->win = mlx_new_window(wolf3d->mlx, WIDTH, HEIGHT, "Wolf3d");
 }
 
+static void ft_init(t_wolf3d *wolf3d)
+{
+	wolf3d->map_height = 0;
+	wolf3d->map_length = 0;
+}
+
 static int	ft_check_button(int button, t_wolf3d *wolf3d)
 {
 	(void)wolf3d;
@@ -38,7 +44,6 @@ static int	ft_close(t_wolf3d *wolf3d)
 
 int			main(int argc, char **argv)
 {
-	(void)argv;
 	t_wolf3d *wolf3d;
 
 	if (argc == 2)
@@ -46,7 +51,8 @@ int			main(int argc, char **argv)
 		if (!(wolf3d = (t_wolf3d *)malloc(sizeof(t_wolf3d))))
 			exit(0);
 		ft_mlx_init(wolf3d);
-		
+		ft_init(wolf3d);
+		ft_read(argv[1], wolf3d);
 		mlx_hook(wolf3d->win, 2, 0, ft_check_button, wolf3d);
 		mlx_hook(wolf3d->win, 17, 0, ft_close, wolf3d);
 		mlx_loop(wolf3d->mlx);
