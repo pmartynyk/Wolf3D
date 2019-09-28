@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmartyny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/24 10:32:19 by pmartyny          #+#    #+#             */
-/*   Updated: 2019/09/24 10:32:22 by pmartyny         ###   ########.fr       */
+/*   Created: 2019/09/28 09:57:42 by pmartyny          #+#    #+#             */
+/*   Updated: 2019/09/28 09:57:43 by pmartyny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 // # define MENU 250
 // # define THREADS 8
 // # define ITERATIONS 50
-// # define ERROR(x) { ft_printf(x); exit(0); }
+# define ERROR(x) { ft_printf(x); exit(0); }
 // # define INT1(a,av) int a=av
 // # define INT2(a,av,b,bv) int a=av,b=bv
 
@@ -51,7 +51,17 @@ typedef struct s_wolf3d
 	int			size_line;
 	int			endian;
 
+    int         **map;
+    int         map_height;
+    int         map_length;
+
 }               t_wolf3d;
+
+//additional.c
+int		ft_checkfile(char *file);
+int		ft_count_length(char *str);
+int		ft_count_height(char *file);
+void	ft_free(char **map);
 
 
 

@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmartyny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/24 10:31:43 by pmartyny          #+#    #+#             */
-/*   Updated: 2019/09/24 10:31:45 by pmartyny         ###   ########.fr       */
+/*   Created: 2019/09/28 09:57:29 by pmartyny          #+#    #+#             */
+/*   Updated: 2019/09/28 09:57:30 by pmartyny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/wolf3d.h"
 
@@ -45,6 +46,7 @@ int			main(int argc, char **argv)
 		if (!(wolf3d = (t_wolf3d *)malloc(sizeof(t_wolf3d))))
 			exit(0);
 		ft_mlx_init(wolf3d);
+		
 		mlx_hook(wolf3d->win, 2, 0, ft_check_button, wolf3d);
 		mlx_hook(wolf3d->win, 17, 0, ft_close, wolf3d);
 		mlx_loop(wolf3d->mlx);
