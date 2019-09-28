@@ -3,7 +3,7 @@ NAME	= wolf3d
 
 GCC 	= gcc
 
-FLAG	= -Wall -Wextra -Werror
+FLAG	= #-Wall -Wextra -Werror
 
 OGL 	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
@@ -13,7 +13,8 @@ MYLIB	= libft_printf/libftprintf.a
 
 SRC		= main.c\
 		read.c\
-		additional.c
+		additional.c\
+		draw.c
 		
 
 LIBS_DIR = ./includes/

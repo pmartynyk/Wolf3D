@@ -45,12 +45,14 @@ void ft_read(char *file, t_wolf3d *wolf3d)
 
 	i = 0;
 	wolf3d->map_height = ft_count_height(file);
-	if (wolf3d->map_height < 3 || wolf3d->map_height > 500)
+	if (wolf3d->map_height < 3 || wolf3d->map_height > 400)
 		ERROR("Error map size\n");
 	wolf3d->map = (int **)malloc(sizeof(int *) * wolf3d->map_height + 1);
 	fd = ft_checkfile(file);
 	while (get_next_line(fd, &line) > 0)
 	{
+		if (!ft_check_line(line, i, wolf3d))
+			ERROR("Error map!\n");
 		ft_fill_map(line, wolf3d, i);
 		free(line);
 		i++;

@@ -16,7 +16,7 @@
 # include "../libft_printf/includes/ft_printf.h"
 # include "mlx.h"
 # include <fcntl.h>
-# include <math.h>
+// # include <math.h>
 // # include <pthread.h>
 
 # define KEYUP 126
@@ -38,8 +38,22 @@
 // # define THREADS 8
 // # define ITERATIONS 50
 # define ERROR(x) { ft_printf(x); exit(0); }
-// # define INT1(a,av) int a=av
+# define INT1(a,av) int a=av
 // # define INT2(a,av,b,bv) int a=av,b=bv
+
+typedef struct s_player
+{
+	double		start_x;
+	double		start_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+}				t_player;
 
 typedef struct s_wolf3d
 {
@@ -50,21 +64,28 @@ typedef struct s_wolf3d
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
+	int			time;
+	int			old_time;
 
     int         **map;
     int         map_height;
     int         map_length;
+	t_player	*player;
 
 }               t_wolf3d;
 
 //additional.c
 int		    ft_checkfile(char *file);
+int			ft_check_line(char *line, int line_num, t_wolf3d *wolf3d);
 int	    	ft_count_length(char *str);
 int	    	ft_count_height(char *file);
 void    	ft_free(char **map);
 
 //read.c
 void		ft_read(char *file, t_wolf3d *wolf3d);
+
+//draw.c
+int			ft_loop_hook(t_wolf3d *wolf3d);
 
 
 

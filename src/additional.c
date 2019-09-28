@@ -35,6 +35,41 @@ int		ft_checkfile(char *file)
 	return (fd);
 }
 
+int ft_check_line(char *line, int line_num, t_wolf3d *wolf3d)
+{
+	int line_len;
+	INT1(i, 0);
+	line_len = ft_strlen(line);
+	while (line[i])
+	{
+		if (line_num == 0 || line_num == wolf3d->map_height - 1)
+		{
+			if (line[i] != '1' && line[i] != ' ')
+			{
+				ft_printf("%c %d %d\n", line[i], line_num, i);
+				return (0);
+			}
+		}
+		else
+		{
+			if (line[i] == '2')
+			{
+				wolf3d->player->start_x = i;
+				wolf3d->player->start_y = line_num;
+			}
+			if (i == 0 || i == line_len - 1)
+			{
+				if (line[i] != '1' && line[i] != ' ')
+					return (0);
+			}
+			else if (line[i] != '0' && line[i] != '1' && line[i] != '2' && line[i] != ' ')
+				return (0);			
+		}
+		i++;
+	}
+	return (1);
+}
+
 void	ft_free(char **map)
 {
 	int i;
