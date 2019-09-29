@@ -14,9 +14,9 @@
 
 static void ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 {
-	int		num;
-	int		k;
-	char	**tmp_map;
+	int num;
+	int k;
+	char **tmp_map;
 
 	if (wolf3d->map_length == 0)
 		wolf3d->map_length = ft_count_length(line);
@@ -28,7 +28,7 @@ static void ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 		while (k < wolf3d->map_length)
 		{
 			num = ft_atoi(tmp_map[k]);
-			wolf3d->map[i][k] = i;
+			wolf3d->map[i][k] = num;
 			k++;
 		}
 		ft_free(tmp_map);
@@ -39,9 +39,9 @@ static void ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 
 void ft_read(char *file, t_wolf3d *wolf3d)
 {
-	int		fd;
-	char	*line;
-	int		i;
+	int fd;
+	char *line;
+	int i;
 
 	i = 0;
 	wolf3d->map_height = ft_count_height(file);
@@ -57,4 +57,18 @@ void ft_read(char *file, t_wolf3d *wolf3d)
 		free(line);
 		i++;
 	}
+
+	// int x = 0;
+	// int y = 0;
+	// while (x < wolf3d->map_height)
+	// {
+	// 	y = 0;
+	// 	while ((y < wolf3d->map_length))
+	// 	{
+	// 		ft_printf("%d ", wolf3d->map[x][y]);
+	// 		y++;
+	// 	}
+	// 	ft_printf("\n");
+	// 	x++;
+	// }
 }

@@ -14,7 +14,8 @@ MYLIB	= libft_printf/libftprintf.a
 SRC		= main.c\
 		read.c\
 		additional.c\
-		draw.c
+		draw.c\
+		raycast.c
 		
 
 LIBS_DIR = ./includes/

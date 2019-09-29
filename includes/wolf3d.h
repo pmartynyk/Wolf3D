@@ -16,7 +16,7 @@
 # include "../libft_printf/includes/ft_printf.h"
 # include "mlx.h"
 # include <fcntl.h>
-// # include <math.h>
+# include <math.h>
 // # include <pthread.h>
 
 # define KEYUP 126
@@ -41,14 +41,34 @@
 # define INT1(a,av) int a=av
 // # define INT2(a,av,b,bv) int a=av,b=bv
 
+typedef struct	s_camera
+{
+	double		cam_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		sd_x;
+	double		sd_y;
+	double		dd_x;
+	double		dd_y;
+	double 		wall_dist;
+	double 		wall_height;
+	double		wall_x;
+	double		wall_y;
+	int			color;
+	// double		mspeed;
+	// double		rspeed;
+}				t_camera;
+
 typedef struct s_player
 {
-	double		start_x;
-	double		start_y;
+	int		start_x;
+	int		start_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		step_x;
+	double		step_y;
 	int			up;
 	int			down;
 	int			left;
@@ -71,6 +91,10 @@ typedef struct s_wolf3d
     int         map_height;
     int         map_length;
 	t_player	*player;
+	t_camera	*camera;
+
+	double		x_pos;
+	int			side;
 
 }               t_wolf3d;
 
@@ -86,6 +110,10 @@ void		ft_read(char *file, t_wolf3d *wolf3d);
 
 //draw.c
 int			ft_loop_hook(t_wolf3d *wolf3d);
+
+//raycast.c
+int			ft_raycast(t_wolf3d *wolf3d);
+
 
 
 
