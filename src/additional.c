@@ -54,8 +54,8 @@ int ft_check_line(char *line, int line_num, t_wolf3d *wolf3d)
 		{
 			if (line[i] == '2')
 			{
-				wolf3d->player->start_x = i;
-				wolf3d->player->start_y = line_num;
+				wolf3d->player->start_x = i + 0.5;
+				wolf3d->player->start_y = line_num + 0.5;
 			}
 			if (i == 0 || i == line_len - 1)
 			{

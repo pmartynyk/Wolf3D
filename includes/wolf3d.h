@@ -51,28 +51,26 @@ typedef struct	s_camera
 	double		dd_x;
 	double		dd_y;
 	double 		wall_dist;
-	double 		wall_height;
-	double		wall_x;
-	double		wall_y;
+	int 		wall_height;
+	int		wall_x;
+	int		wall_y;
 	int			color;
-	// double		mspeed;
-	// double		rspeed;
 }				t_camera;
 
 typedef struct s_player
 {
-	int		start_x;
-	int		start_y;
+	double		start_x;
+	double		start_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-	double		step_x;
-	double		step_y;
-	int			up;
-	int			down;
-	int			left;
-	int			right;
+	int		step_x;
+	int		step_y;
+	// int			up;
+	// int			down;
+	// int			left;
+	// int			right;
 }				t_player;
 
 typedef struct s_wolf3d
@@ -93,7 +91,7 @@ typedef struct s_wolf3d
 	t_player	*player;
 	t_camera	*camera;
 
-	double		x_pos;
+	int		x_pos;
 	int			side;
 
 }               t_wolf3d;

@@ -32,15 +32,16 @@ static void ft_init_player(t_wolf3d *wolf3d)
 	wolf3d->player->dir_y = 0;
 	wolf3d->player->plane_x = 0;
 	wolf3d->player->plane_y = 0.66;
-	wolf3d->player->up = 0;
-	wolf3d->player->down = 0;
-	wolf3d->player->left = 0;
-	wolf3d->player->right = 0;
-	wolf3d->player->start_x = 1;
-	wolf3d->player->start_y = 1;
+	// wolf3d->player->up = 0;
+	// wolf3d->player->down = 0;
+	// wolf3d->player->left = 0;
+	// wolf3d->player->right = 0;
+	wolf3d->player->start_x = 0;
+	wolf3d->player->start_y = 0;
 	wolf3d->time = 0;
 	wolf3d->old_time = 0;
 	wolf3d->side = 0;
+	wolf3d->camera->wall_height = 0;
 }
 
 static int	ft_check_button(int button, t_wolf3d *wolf3d)
