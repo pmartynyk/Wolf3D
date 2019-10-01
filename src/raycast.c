@@ -21,19 +21,52 @@ static void pixel_put(t_wolf3d *wolf3d, int y, int color)
 static void ft_draw(t_wolf3d *wolf3d, int map_y)
 {
     int y;
+	int	d;
+	int	texy;
+
+    if (wolf3d->player->step_x < 0)
+		wolf3d->texture->texture_n = 0;
+	else if (wolf3d->player->step_x > 0)
+		wolf3d->texture->texture_n = 1;
+	if (wolf3d->side == 1)
+	{
+		if (wolf3d->player->step_y < 0)
+			wolf3d->texture->texture_n = 2;
+		else if (wolf3d->player->step_y > 0)
+			wolf3d->texture->texture_n = 3;
+	}
+
+    if (wolf3d->side == 0)
+		wolf3d->texture->wallx = wolf3d->player->start_y + wolf3d->camera->wall_dist * wolf3d->camera->ray_dir_y;
+	else
+		wolf3d->texture->wallx = wolf3d->player->start_x + wolf3d->camera->wall_dist * wolf3d->camera->ray_dir_x;
+	wolf3d->texture->wallx -= floor((wolf3d->texture->wallx));
+	wolf3d->texture->texture_x = (int)(wolf3d->texture->wallx * (double)64);
+	if (wolf3d->side == 0 && wolf3d->camera->ray_dir_x > 0)
+		wolf3d->texture->wallx = 64 - wolf3d->texture->wallx - 1;
+	if (wolf3d->side == 1 && wolf3d->camera->ray_dir_y < 0)
+		wolf3d->texture->wallx = 64 - wolf3d->texture->wallx - 1;
+
 
     y = wolf3d->camera->wall_x - 1;
     while (++y <= wolf3d->camera->wall_y)
     {
-        wolf3d->camera->color = 0x00ffac;
-       if (wolf3d->side == 1)
-            wolf3d->camera->color = 0xff00ff;
+        d = y * 256 - HEIGHT * 128 + wolf3d->camera->wall_height * 128;
+		texy = ((d * 64) / wolf3d->camera->wall_height) / 256;
+		if (texy < 0)
+			texy = 0;
+		wolf3d->camera->color = ((int*)wolf3d->texture->ctexture[wolf3d->texture->texture_n])[64 * texy + wolf3d->texture->texture_x];
+		if (wolf3d->side == 1)
+			wolf3d->camera->color = (wolf3d->camera->color >> 1) & 8355711;
         pixel_put(wolf3d, y, wolf3d->camera->color);
     }
 }
 
 static void ft_calc_wall(t_wolf3d *wolf3d, int map_x, int map_y)
 {
+
+
+    
     if (wolf3d->side == 0)
         wolf3d->camera->wall_dist = (map_x - wolf3d->player->start_x + (1.0 - wolf3d->player->step_x) / 2.0) / wolf3d->camera->ray_dir_x;
     else
@@ -125,7 +158,6 @@ int ft_raycast(t_wolf3d *wolf3d)
         ft_draw(wolf3d, map_y);
         wolf3d->x_pos++;
     }
-    // mlx_clear_window(wolf3d->mlx, wolf3d->win);
     mlx_put_image_to_window(wolf3d->mlx, wolf3d->win, wolf3d->image, 0, 0);
     mlx_destroy_image(wolf3d->mlx, wolf3d->image);
     return (0);

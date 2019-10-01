@@ -12,6 +12,34 @@
 
 #include "../includes/wolf3d.h"
 
+static void ft_init_texture(t_wolf3d *wolf3d)
+{
+	int			bpp;
+	int			sl;
+	int			end;
+	int			w;
+	int			h;
+
+	if (!(wolf3d->texture = (t_texture*)malloc(sizeof(t_texture))))
+		exit(1);
+	wolf3d->texture->texture = (void**)malloc(sizeof(void*) * 4);
+	wolf3d->texture->ctexture = (char**)malloc(sizeof(char*) * 4);
+	if (!(wolf3d->texture->texture[0] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/bluestone.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
+	if (!(wolf3d->texture->texture[1] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/colorstone.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
+	if (!(wolf3d->texture->texture[2] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/greystone.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
+	if (!(wolf3d->texture->texture[3] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/redbrick.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
+	w = 0;
+	while (w < 4)
+	{
+		wolf3d->texture->ctexture[w] = mlx_get_data_addr(wolf3d->texture->texture[w], &bpp, &sl, &end);
+		w++;
+	}
+}
+
 static void	ft_mlx_init(t_wolf3d *wolf3d)
 {
 	wolf3d->mlx = mlx_init();
@@ -59,7 +87,6 @@ static int	ft_check_move(int button, t_wolf3d *wolf3d)
 
 static int	ft_check_button(int button, t_wolf3d *wolf3d)
 {
-	// (void)wolf3d;
 	if (button == 53)
 		exit(0);
 	ft_check_move(button, wolf3d);
@@ -83,13 +110,13 @@ int			main(int argc, char **argv)
 		ft_init_player(wolf3d);
 		ft_read(argv[1], wolf3d);
 		ft_mlx_init(wolf3d);
+		ft_init_texture(wolf3d);
 		mlx_do_key_autorepeatoff(wolf3d->mlx);
 		mlx_loop_hook(wolf3d->mlx, ft_raycast, wolf3d);
 		mlx_hook(wolf3d->win, 2, 0, ft_check_button, wolf3d);
 		mlx_hook(wolf3d->win, 17, 0, ft_close, wolf3d);
 		mlx_key_hook(wolf3d->win, ft_check_move, wolf3d);
 		mlx_loop(wolf3d->mlx);
-		// ft_raycast(wolf3d);
 	}
 	else
 		ft_printf("Usage: ./wolf3d [map name]\n");

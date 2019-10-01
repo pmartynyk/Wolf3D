@@ -18,7 +18,6 @@ static void	ft_up(t_wolf3d *wolf3d)
 		wolf3d->player->start_x += wolf3d->player->dir_x * wolf3d->camera->move_speed;
 	if (wolf3d->map[(int)(wolf3d->player->start_y + wolf3d->player->dir_y * (wolf3d->camera->move_speed + 0.5))][(int)(wolf3d->player->start_x)] != 1)
 		wolf3d->player->start_y += wolf3d->player->dir_y * wolf3d->camera->move_speed;
-    // wolf3d->player->up = 0;
 }
 
 static void	ft_down(t_wolf3d *wolf3d)
@@ -27,7 +26,6 @@ static void	ft_down(t_wolf3d *wolf3d)
 		wolf3d->player->start_x -= wolf3d->player->dir_x * wolf3d->camera->move_speed;
 	if (wolf3d->map[(int)(wolf3d->player->start_y - wolf3d->player->dir_y * (wolf3d->camera->move_speed + 0.5))][(int)(wolf3d->player->start_x)] != 1)
 		wolf3d->player->start_y -= wolf3d->player->dir_y * wolf3d->camera->move_speed;
-    // wolf3d->player->down = 0;
 }
 
 static void	ft_right(t_wolf3d *wolf3d)
@@ -41,7 +39,6 @@ static void	ft_right(t_wolf3d *wolf3d)
 	old_plane_x = wolf3d->player->plane_x;
 	wolf3d->player->plane_x = wolf3d->player->plane_x *	cos(wolf3d->camera->rotate_speed) - wolf3d->player->plane_y * sin(wolf3d->camera->rotate_speed);
 	wolf3d->player->plane_y = old_plane_x * sin(wolf3d->camera->rotate_speed) + wolf3d->player->plane_y * cos(wolf3d->camera->rotate_speed);
-    // wolf3d->player->right = 0;
 }
 
 static void	ft_left(t_wolf3d *wolf3d)
@@ -55,7 +52,6 @@ static void	ft_left(t_wolf3d *wolf3d)
 	old_plane_x = wolf3d->player->plane_x;
 	wolf3d->player->plane_x = wolf3d->player->plane_x *	cos(-wolf3d->camera->rotate_speed) - wolf3d->player->plane_y * sin(-wolf3d->camera->rotate_speed);
 	wolf3d->player->plane_y = old_plane_x * sin(-wolf3d->camera->rotate_speed) + wolf3d->player->plane_y * cos(-wolf3d->camera->rotate_speed);
-    // wolf3d->player->left = 0;
 }
 
 

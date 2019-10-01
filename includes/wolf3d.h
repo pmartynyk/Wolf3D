@@ -41,6 +41,15 @@
 # define INT1(a,av) int a=av
 // # define INT2(a,av,b,bv) int a=av,b=bv
 
+typedef struct	s_texture
+{
+	void		**texture;
+	char		**ctexture;
+	int			texture_x;
+	int			texture_n;
+	double		wallx;
+}				t_texture;
+
 typedef struct	s_camera
 {
 	double		cam_x;
@@ -92,11 +101,14 @@ typedef struct s_wolf3d
     int         map_length;
 	t_player	*player;
 	t_camera	*camera;
+	t_texture	*texture;
 
 	int		x_pos;
 	int			side;
 
 }               t_wolf3d;
+
+
 
 //additional.c
 int		    ft_checkfile(char *file);
