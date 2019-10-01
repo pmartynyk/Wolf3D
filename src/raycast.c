@@ -111,8 +111,12 @@ int ft_raycast(t_wolf3d *wolf3d)
     int map_y;
 
     wolf3d->x_pos = 0;
+    wolf3d->image = mlx_new_image(wolf3d->mlx, WIDTH, HEIGHT);
+    wolf3d->image_buf = (int *)mlx_get_data_addr(wolf3d->image,
+    &wolf3d->bits_per_pixel, &wolf3d->size_line, &wolf3d->endian);
+    ft_move(wolf3d);
     while (wolf3d->x_pos < WIDTH)
-    {
+    {        
         ft_init_camera(wolf3d);
         map_x = (int)wolf3d->player->start_x;
         map_y = (int)wolf3d->player->start_y;
@@ -121,6 +125,8 @@ int ft_raycast(t_wolf3d *wolf3d)
         ft_draw(wolf3d, map_y);
         wolf3d->x_pos++;
     }
+    // mlx_clear_window(wolf3d->mlx, wolf3d->win);
     mlx_put_image_to_window(wolf3d->mlx, wolf3d->win, wolf3d->image, 0, 0);
+    mlx_destroy_image(wolf3d->mlx, wolf3d->image);
     return (0);
 }

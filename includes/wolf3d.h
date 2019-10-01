@@ -52,9 +52,11 @@ typedef struct	s_camera
 	double		dd_y;
 	double 		wall_dist;
 	int 		wall_height;
-	int		wall_x;
-	int		wall_y;
+	int			wall_x;
+	int			wall_y;
 	int			color;
+	double		move_speed;
+	double		rotate_speed;
 }				t_camera;
 
 typedef struct s_player
@@ -67,10 +69,10 @@ typedef struct s_player
 	double		plane_y;
 	int		step_x;
 	int		step_y;
-	// int			up;
-	// int			down;
-	// int			left;
-	// int			right;
+	char			up;
+	char			down;
+	char			left;
+	char			right;
 }				t_player;
 
 typedef struct s_wolf3d
@@ -112,7 +114,8 @@ int			ft_loop_hook(t_wolf3d *wolf3d);
 //raycast.c
 int			ft_raycast(t_wolf3d *wolf3d);
 
-
+//move.c
+void    ft_move(t_wolf3d *wolf3d);
 
 
 #endif

@@ -15,7 +15,8 @@ SRC		= main.c\
 		read.c\
 		additional.c\
 		draw.c\
-		raycast.c
+		raycast.c\
+		move.c
 		
 
 LIBS_DIR = ./includes/
