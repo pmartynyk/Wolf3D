@@ -22,8 +22,8 @@ static void ft_init_texture(t_wolf3d *wolf3d)
 
 	if (!(wolf3d->texture = (t_texture*)malloc(sizeof(t_texture))))
 		exit(1);
-	wolf3d->texture->texture = (void**)malloc(sizeof(void*) * 4);
-	wolf3d->texture->ctexture = (char**)malloc(sizeof(char*) * 4);
+	wolf3d->texture->texture = (void**)malloc(sizeof(void*) * 6);
+	wolf3d->texture->ctexture = (char**)malloc(sizeof(char*) * 6);
 	if (!(wolf3d->texture->texture[0] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/bluestone.xpm", &w, &h)))
 		ERROR("Error. Load texture!\n");
 	if (!(wolf3d->texture->texture[1] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/colorstone.xpm", &w, &h)))
@@ -32,8 +32,12 @@ static void ft_init_texture(t_wolf3d *wolf3d)
 		ERROR("Error. Load texture!\n");
 	if (!(wolf3d->texture->texture[3] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/redbrick.xpm", &w, &h)))
 		ERROR("Error. Load texture!\n");
+	if (!(wolf3d->texture->texture[4] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/wood.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
+	if (!(wolf3d->texture->texture[5] = mlx_xpm_file_to_image(wolf3d->mlx, "./texture/greenlight.xpm", &w, &h)))
+		ERROR("Error. Load texture!\n");
 	w = 0;
-	while (w < 4)
+	while (w < 6)
 	{
 		wolf3d->texture->ctexture[w] = mlx_get_data_addr(wolf3d->texture->texture[w], &bpp, &sl, &end);
 		w++;

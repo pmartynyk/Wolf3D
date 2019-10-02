@@ -66,6 +66,14 @@ typedef struct	s_camera
 	int			color;
 	double		move_speed;
 	double		rotate_speed;
+	double 		floor_x_wall;
+	double		floor_y_wall;
+	double		current_dist;
+	double		weight;
+	double		curfx;
+	double		curfy;
+	int			ftx;
+	int			fty;
 }				t_camera;
 
 typedef struct s_player
