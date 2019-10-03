@@ -12,10 +12,19 @@
 
 #include "../includes/wolf3d.h"
 
-void ft_check_start(t_wolf3d * wolf3d)
+int		ft_check_move(int button, t_wolf3d *wolf3d)
 {
-	if (wolf3d->player->start_x == 0 || wolf3d->player->start_x == 0)
-		ERROR("Please put start point!\n");
+	if (button == KEYUP)
+		wolf3d->player->up = !wolf3d->player->up;
+	if (button == KEYDOWN)
+		wolf3d->player->down = !wolf3d->player->down;
+	if (button == KEYLEFT)
+		wolf3d->player->left = !wolf3d->player->left;
+	if (button == KEYRIGHT)
+		wolf3d->player->right = !wolf3d->player->right;
+	if (button == RUN)
+		wolf3d->player->run = !wolf3d->player->run;
+	return (0);
 }
 
 void	ft_music(t_wolf3d *wolf3d)
@@ -28,61 +37,6 @@ void	ft_music(t_wolf3d *wolf3d)
 		system("afplay ./texture/Wolf.mp3&");
 	else if (wolf3d->music == 0)
 		system("killall afplay");
-}
-
-int		ft_checkfile(char *file)
-{
-	int fd;
-
-	fd = 0;
-	if (!(ft_strstr(file, ".w3d")))
-	{
-		ft_printf("Invalid file\n");
-		exit(0);
-	}
-	else if ((fd = open(file, O_DIRECTORY)) >= 0)
-	{
-		ft_printf("Invalid file\n");
-		exit(0);
-	}
-	else if ((fd = open(file, O_RDONLY)) < 0)
-	{
-		ft_printf("Invalid file\n");
-		exit(0);
-	}
-	return (fd);
-}
-
-int ft_check_line(char *line, int line_num, t_wolf3d *wolf3d)
-{
-	int line_len;
-	INT1(i, 0);
-	line_len = ft_strlen(line);
-	while (line[i])
-	{
-		if (line_num == 0 || line_num == wolf3d->map_height - 1)
-		{
-			if (line[i] != '1' && line[i] != ' ')
-				return (0);
-		}
-		else
-		{
-			if (line[i] == '2')
-			{
-				wolf3d->player->start_x = i + 0.5;
-				wolf3d->player->start_y = line_num + 0.5;
-			}
-			if (i == 0 || i == line_len - 1)
-			{
-				if (line[i] != '1' && line[i] != ' ')
-					return (0);
-			}
-			else if (line[i] != '0' && line[i] != '1' && line[i] != '2' && line[i] != ' ')
-				return (0);			
-		}
-		i++;
-	}
-	return (1);
 }
 
 void	ft_free(char **map)

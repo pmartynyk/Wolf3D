@@ -12,11 +12,11 @@
 
 #include "../includes/wolf3d.h"
 
-static void ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
+static void	ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 {
-	int num;
-	int k;
-	char **tmp_map;
+	int		num;
+	int		k;
+	char	**tmp_map;
 
 	if (wolf3d->map_length == 0)
 		wolf3d->map_length = ft_count_length(line);
@@ -37,11 +37,11 @@ static void ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 		ERROR("Error. Wrong line length.");
 }
 
-void ft_read(char *file, t_wolf3d *wolf3d)
+void		ft_read(char *file, t_wolf3d *wolf3d)
 {
-	int fd;
-	char *line;
-	int i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = 0;
 	wolf3d->map_height = ft_count_height(file);

@@ -3,7 +3,7 @@ NAME	= wolf3d
 
 GCC 	= gcc
 
-FLAG	= #-Wall -Wextra -Werror
+FLAG	= -Wall -Wextra -Werror
 
 OGL 	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
@@ -16,7 +16,12 @@ SRC		= main.c\
 		additional.c\
 		draw.c\
 		raycast.c\
-		move.c
+		raycast2.c\
+		move.c\
+		check.c\
+		init.c\
+		floor.c\
+
 		
 
 LIBS_DIR = ./includes/
