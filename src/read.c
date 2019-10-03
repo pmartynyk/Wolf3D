@@ -57,18 +57,5 @@ void ft_read(char *file, t_wolf3d *wolf3d)
 		free(line);
 		i++;
 	}
-
-	// int x = 0;
-	// int y = 0;
-	// while (x < wolf3d->map_height)
-	// {
-	// 	y = 0;
-	// 	while ((y < wolf3d->map_length))
-	// 	{
-	// 		ft_printf("%d ", wolf3d->map[x][y]);
-	// 		y++;
-	// 	}
-	// 	ft_printf("\n");
-	// 	x++;
-	// }
+	ft_check_start(wolf3d);
 }

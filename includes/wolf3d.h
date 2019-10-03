@@ -32,6 +32,8 @@
 # define MOVEDOOWN 1
 # define MOVELEFT 0
 # define MOVERIGHT 2
+# define RUN 257
+# define MUSIC 46
 # define WIDTH 1000
 # define HEIGHT 600
 // # define MENU 250
@@ -90,6 +92,7 @@ typedef struct s_player
 	char			down;
 	char			left;
 	char			right;
+	char			run;
 }				t_player;
 
 typedef struct s_wolf3d
@@ -113,12 +116,15 @@ typedef struct s_wolf3d
 
 	int		x_pos;
 	int			side;
+	int			music;
 
 }               t_wolf3d;
 
 
 
 //additional.c
+void		ft_music(t_wolf3d *wolf3d);
+void		ft_check_start(t_wolf3d * wolf3d);
 int		    ft_checkfile(char *file);
 int			ft_check_line(char *line, int line_num, t_wolf3d *wolf3d);
 int	    	ft_count_length(char *str);

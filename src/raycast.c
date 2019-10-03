@@ -216,7 +216,6 @@ int ft_raycast(t_wolf3d *wolf3d)
         map_y = (int)wolf3d->player->start_y;
         ft_calculate_step(wolf3d, map_x, map_y);
         ft_dda(wolf3d, map_x, map_y);
-        // ft_draw(wolf3d, map_x, map_y);
         wolf3d->x_pos++;
     }
     mlx_put_image_to_window(wolf3d->mlx, wolf3d->win, wolf3d->image, 0, 0);

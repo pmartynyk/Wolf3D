@@ -65,4 +65,8 @@ void    ft_move(t_wolf3d *wolf3d)
 		ft_left(wolf3d);
 	if (wolf3d->player->right)
 		ft_right(wolf3d);
+	if (wolf3d->player->run)
+		wolf3d->camera->move_speed = 0.1;
+	else
+		wolf3d->camera->move_speed = 0.05;
 }

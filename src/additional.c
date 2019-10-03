@@ -12,6 +12,24 @@
 
 #include "../includes/wolf3d.h"
 
+void ft_check_start(t_wolf3d * wolf3d)
+{
+	if (wolf3d->player->start_x == 0 || wolf3d->player->start_x == 0)
+		ERROR("Please put start point!\n");
+}
+
+void	ft_music(t_wolf3d *wolf3d)
+{
+	if (wolf3d->music == 1)
+		wolf3d->music = 0;
+	else if (wolf3d->music == 0)
+		wolf3d->music = 1;
+	if (wolf3d->music == 1)
+		system("afplay ./texture/Wolf.mp3&");
+	else if (wolf3d->music == 0)
+		system("killall afplay");
+}
+
 int		ft_checkfile(char *file)
 {
 	int fd;
@@ -45,10 +63,7 @@ int ft_check_line(char *line, int line_num, t_wolf3d *wolf3d)
 		if (line_num == 0 || line_num == wolf3d->map_height - 1)
 		{
 			if (line[i] != '1' && line[i] != ' ')
-			{
-				ft_printf("%c %d %d\n", line[i], line_num, i);
 				return (0);
-			}
 		}
 		else
 		{

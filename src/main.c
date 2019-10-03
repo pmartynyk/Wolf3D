@@ -54,6 +54,7 @@ static void ft_init_player(t_wolf3d *wolf3d)
 {
 	wolf3d->map_height = 0;
 	wolf3d->map_length = 0;
+	wolf3d->music = 0;
 	wolf3d->player = (t_player*)malloc(sizeof(t_player));
 	wolf3d->camera = (t_camera*)malloc(sizeof(t_camera));
 	wolf3d->player->dir_x = 1;
@@ -64,6 +65,7 @@ static void ft_init_player(t_wolf3d *wolf3d)
 	wolf3d->player->down = 0;
 	wolf3d->player->left = 0;
 	wolf3d->player->right = 0;
+	wolf3d->player->run = 0;
 	wolf3d->player->start_x = 0;
 	wolf3d->player->start_y = 0;
 	wolf3d->time = 0;
@@ -85,6 +87,8 @@ static int	ft_check_move(int button, t_wolf3d *wolf3d)
 		wolf3d->player->left = !wolf3d->player->left;
 	if (button == KEYRIGHT)
 		wolf3d->player->right = !wolf3d->player->right;
+	if (button == RUN)
+		wolf3d->player->run =!wolf3d->player->run;
 	return (0);
 }
 
@@ -92,14 +96,23 @@ static int	ft_check_move(int button, t_wolf3d *wolf3d)
 static int	ft_check_button(int button, t_wolf3d *wolf3d)
 {
 	if (button == 53)
+	{
+		if (wolf3d->music == 1)
+			system("killall afplay");
+		mlx_destroy_window(wolf3d->mlx, wolf3d->win);
 		exit(0);
+	}
+	if (button == MUSIC)
+		ft_music(wolf3d);
 	ft_check_move(button, wolf3d);
 	return (0);
 }
 
 static int	ft_close(t_wolf3d *wolf3d)
 {
-	(void)wolf3d;
+	if (wolf3d->music == 1)
+		system("killall afplay");
+	mlx_destroy_window(wolf3d->mlx, wolf3d->win);
 	exit(0);
 }
 
@@ -113,8 +126,10 @@ int			main(int argc, char **argv)
 			exit(0);
 		ft_init_player(wolf3d);
 		ft_read(argv[1], wolf3d);
+		// wolf3d->mlx = mlx_init();
 		ft_mlx_init(wolf3d);
 		ft_init_texture(wolf3d);
+		// wolf3d->win = mlx_new_window(wolf3d->mlx, WIDTH, HEIGHT, "Wolf3d");
 		mlx_do_key_autorepeatoff(wolf3d->mlx);
 		mlx_loop_hook(wolf3d->mlx, ft_raycast, wolf3d);
 		mlx_hook(wolf3d->win, 2, 0, ft_check_button, wolf3d);
