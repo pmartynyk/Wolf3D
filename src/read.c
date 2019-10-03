@@ -20,7 +20,8 @@ static void	ft_fill_map(char *line, t_wolf3d *wolf3d, int i)
 
 	if (wolf3d->map_length == 0)
 		wolf3d->map_length = ft_count_length(line);
-	if (wolf3d->map_length == ft_count_length(line))
+	if (wolf3d->map_length == ft_count_length(line) && wolf3d->map_length < 400
+	&& wolf3d->map_length > 3)
 	{
 		wolf3d->map[i] = (int *)malloc(sizeof(int) * wolf3d->map_length + 1);
 		k = 0;

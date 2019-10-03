@@ -48,8 +48,13 @@ static int	ft_check_values(char *line, int line_num, int i, t_wolf3d *wolf3d)
 	line_len = ft_strlen(line);
 	if (line[i] == '2')
 	{
-		wolf3d->player->start_x = i + 0.5;
-		wolf3d->player->start_y = line_num + 0.5;
+		if (wolf3d->player->start_x == 0 || wolf3d->player->start_x == 0)
+		{
+			wolf3d->player->start_x = i + 0.5;
+			wolf3d->player->start_y = line_num + 0.5;
+		}
+		else
+			ERROR("Too many start points!\n");
 	}
 	if (i == 0 || i == line_len - 1)
 	{
